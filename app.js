@@ -75,7 +75,11 @@ const makeProjection = (allFeatures) => {
   const maxLongitude = Math.max(...longitudes);
   const minLatitude = Math.min(...latitudes);
   const maxLatitude = Math.max(...latitudes);
-  const longitudeSpan = maxLongitude - minLongitude;
+  const midLatitude = (minLatitude + maxLatitude) / 2;
+  const longitudeScale = Math.cos((midLatitude * Math.PI) / 180);
+  const projectedMinX = minLongitude * longitudeScale;
+  const projectedMaxX = maxLongitude * longitudeScale;
+  const longitudeSpan = projectedMaxX - projectedMinX;
   const latitudeSpan = maxLatitude - minLatitude;
   const scale = Math.min(
     (MAP_WIDTH - MAP_PADDING * 2) / longitudeSpan,
@@ -85,7 +89,7 @@ const makeProjection = (allFeatures) => {
   const offsetY = (MAP_HEIGHT - latitudeSpan * scale) / 2;
 
   return ([longitude, latitude]) => [
-    offsetX + (longitude - minLongitude) * scale,
+    offsetX + (longitude * longitudeScale - projectedMinX) * scale,
     offsetY + (maxLatitude - latitude) * scale,
   ];
 };
