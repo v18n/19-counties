@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>19 Counties | Viktor Nebehaj</title>
+    <meta name="description" content="A small personal map for marking which of Hungary's 19 counties Viktor has visited.">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="map-panel" aria-labelledby="page-title">
+        <div class="masthead">
+          <p class="kicker">19.viktornebehaj.com</p>
+          <h1 id="page-title">19 counties.</h1>
+          <p class="intro">A tiny map for Hungary's 19 counties. Click counties to mark visits; your map is saved in this browser, and the share link carries the current selection.</p>
+        </div>
+
+        <div class="progress-wrap" aria-label="Visited progress">
+          <div class="progress-copy">
+            <span id="count-label">0 / 19</span>
+            <span id="percent-label">0%</span>
+          </div>
+          <div class="progress-track">
+            <div id="progress-bar" class="progress-bar"></div>
+          </div>
+        </div>
+
+        <div class="map-stage">
+          <svg id="county-map" role="img" aria-labelledby="map-title map-desc"></svg>
+          <div id="tooltip" class="tooltip" hidden></div>
+        </div>
+      </section>
+
+      <aside class="side-panel" aria-label="Controls and county list">
+        <div class="control-row" aria-label="Map actions">
+          <button id="mark-all" type="button">Mark all</button>
+          <button id="clear-all" type="button">Clear</button>
+          <button id="copy-link" type="button">Copy link</button>
+        </div>
+
+        <div class="status-box">
+          <p class="status-label">Visited</p>
+          <p id="status-copy">No counties marked yet.</p>
+        </div>
+
+        <div class="county-list-wrap">
+          <h2>Counties</h2>
+          <div id="county-list" class="county-list"></div>
+        </div>
+      </aside>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
